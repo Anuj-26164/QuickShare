@@ -49,7 +49,7 @@ export default function Header({ active = "send", onNavigate }) {
         <div className="hidden items-center gap-2 md:flex">
           <span className="flex items-center gap-1.5 font-label-sm text-label-sm text-muted">
             <span className="material-symbols-outlined text-[16px]">lock</span>
-            End-to-end
+            Fully Secure
           </span>
         </div>
       </div>
