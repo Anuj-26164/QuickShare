@@ -1,0 +1,98 @@
+/* Fonts used by the QuickShare design system */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-body-md antialiased;
+    min-height: 100dvh;
+    margin: 0;
+  }
+}
+
+@layer components {
+  /* Material Symbols baseline + filled variant */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .material-symbols-outlined.fill-icon {
+    font-variation-settings: 'FILL' 1;
+  }
+
+  /* DropZone dashed border — default + active drag states */
+  .dropzone-dash {
+    border-radius: 1rem;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%23E6EBF1' stroke-width='2' stroke-dasharray='8%2c 8' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
+  .dropzone-dash-active {
+    border-radius: 1rem;
+    background-color: rgba(83, 58, 253, 0.05);
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%23533AFD' stroke-width='2' stroke-dasharray='8%2c 8' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
+
+  /* ProgressBar fill — animated indigo gradient (default / in-progress state) */
+  .progress-gradient {
+    background: linear-gradient(90deg, #533AFD, #B9B9F9);
+    background-size: 200% 100%;
+    animation: moveGradient 2s linear infinite;
+  }
+  @keyframes moveGradient {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+
+  /* Ambient shadows per "Elevation & Depth" tokens */
+  .ambient-shadow {
+    box-shadow: 0 4px 12px rgba(83, 58, 253, 0.05);
+  }
+  .ambient-shadow-lg {
+    box-shadow: 0 8px 24px rgba(83, 58, 253, 0.12);
+  }
+
+  /* Glassmorphic overlay surface */
+  .glass-surface {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Pulsing status dot (Waiting / Connecting / Transferring chips) */
+  .pulse-dot {
+    position: relative;
+    display: inline-flex;
+    height: 0.5rem;
+    width: 0.5rem;
+    flex-shrink: 0;
+  }
+  .pulse-dot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background-color: currentColor;
+    opacity: 0.6;
+    animation: pulseRing 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  .pulse-dot::after {
+    content: '';
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-radius: 9999px;
+    background-color: currentColor;
+  }
+  @keyframes pulseRing {
+    75%, 100% { transform: scale(2.2); opacity: 0; }
+  }
+}
